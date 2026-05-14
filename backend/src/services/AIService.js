@@ -5,14 +5,21 @@ const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
 });
 // Generate new lesson
-exports.generateNewLesson= async (category, subcategory,prompt) => {
+exports.generateNewLesson= async (categoryID, subcategoryID,prompt) => {
     try {
+        // Fetch category and sub-category names
+        const category = await Category.findByPk(categoryID);
+        const subCategory = await SubCategory.findByPk(subcategoryID);
+
+        if (!category || !subCategory) {
+            throw new Error('Category or SubCategory not found');
+        }
         const response = await openai.chat.completions.create({
             model: 'gpt-3.5-turbo',
             messages: [
                 {
                     role: 'system',
-                    content: `You are an expert teacher. Create a structured lesson about ${category} - ${subCategory}.`
+                    content: `You are an expert teacher. Create a structured lesson about ${category.name} - ${subCategory.name}.`
                 },
                 {
                     role: 'user',
