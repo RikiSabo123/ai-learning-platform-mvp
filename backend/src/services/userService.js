@@ -24,3 +24,13 @@ exports.getUserHistory = async (userId) => {
     }
     return user.prompts;
 }
+//get all users for admin
+exports.getAllUsersForAdmin = async () => {
+    const users = await User.findAll({
+        include: [{ model: Prompt, as: 'prompts' }]
+    });
+    if (!users || users.length === 0) {
+        throw new Error('No users found');
+    }
+    return users;
+}

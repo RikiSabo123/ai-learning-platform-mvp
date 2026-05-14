@@ -1,30 +1,24 @@
 const userService = require('../services/userService');
-//User registration
-exports.register = async (req, res) => {
-    try {
-        const userData = req.body;
-        const user = await userService.register(userData);
-        res.status(201).json({ message: 'User registered successfully', user });
-    }
-    catch (error) {
-        res.status(500).json({ message: 'Error registering user' });
-    }
-}
+const promptService = require('../services/promptService');
 //Get user history
-exports.getUserHistory = async (req, res) => {
+exports.getUserHistory = async (req, res) => {  
     try {
         const userId = req.params.id;
+        if (!userId) {
+            return res.status(400).json({ message: 'User ID is required' });
+        }
         const history = await userService.getUserHistory(userId);
+        res.status(200).json({ history });
     } catch (error) {
         res.status(500).json({ message: 'Error fetching user history' });
     }
 }
-//Get all users for admin
-exports.getAllUsersForAdmin = async (req, res) => {
+//get all users
+exports.getAllUsers = async (req, res) => {
     try {
         const users = await userService.getAllUsersForAdmin();
         res.status(200).json({ message: 'Users fetched successfully', users });
-    } catch (error) {
+    }catch (error) {
         res.status(500).json({ message: 'Error fetching users' });
     }
 }

@@ -32,14 +32,35 @@ exports.getUserHistory = async (userId) => {
     }
     return user.prompts;
 }
-//Get all prompts
-exports.getAllPromptsForAdmin = async () => {
-    const prompts = await Prompt.findAll();
-    if (!prompts) {
-        throw new Error('No prompts found');
-    }
-    return prompts;
-}
+// //Get all prompts
+// exports.getAllPromptsForAdmin = async () => {
+//     const prompts = await Prompt.findAll({
+//         include: [
+//             {
+//                 model: User,
+//                 as: 'user', // וודאי שזה ה-alias שהגדרת ב-models/index.js
+//                 attributes: ['first_name', 'last_name', 'phone'] // מביאים רק מה שצריך
+//             },
+//             {
+//                 model: Category,
+//                 as: 'category',
+//                 attributes: ['name']
+//             },
+//             {
+//                 model: SubCategory,
+//                 as: 'subCategory',
+//                 attributes: ['name']
+//             }
+//         ],
+//         order: [['createdAt', 'DESC']] // החדש ביותר למעלה
+//     });
+
+//     if (!prompts || prompts.length === 0) {
+//         throw new Error('No prompts found');
+//     }
+
+//     return prompts;
+// }
 //Get prompt by id
 exports.getPromptById = async (promptId) => {
     if (!promptId) {
