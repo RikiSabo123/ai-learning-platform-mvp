@@ -15,7 +15,6 @@ exports.getUserHistory = async (req, res) => {
     try {
         const userId = req.params.id;
         const history = await userService.getUserHistory(userId);
-        res.status(200).json({ history });
     } catch (error) {
         res.status(500).json({ message: 'Error fetching user history' });
     }
