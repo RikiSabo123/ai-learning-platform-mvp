@@ -1,4 +1,4 @@
-const { Category } = require('../models');
+const { Category ,subcategory} = require('../models');
 //get all categorty
 exports.getCategories = async () => {
     const categories = await Category.findAll();
@@ -16,7 +16,7 @@ exports.getSubCategoriesByCategoryId = async (categoryId) => {
 }
 //get sub-category by id
 exports.getSubCategoryById = async (subCategoryId) => {
-    const subCategory = await Category.findByPk(subCategoryId);
+    const subCategory = await subcategory.findByPk(subCategoryId);
     if (!subCategory) {
         throw new Error('Sub-category not found');
     }
