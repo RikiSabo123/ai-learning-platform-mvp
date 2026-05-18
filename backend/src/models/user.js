@@ -10,16 +10,24 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
-      this.hasMany(models.prompt,{foreignKey:'userId'})
+      this.hasMany(models.Prompt, {
+        foreignKey: 'userId',
+        as: 'prompts'
+      });
     }
   }
   User.init({
     name: DataTypes.STRING,
-    phone: DataTypes.STRING
+    phone: DataTypes.STRING,
+    role: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: 'user'
+    }
   }, {
     sequelize,
     modelName: 'User',
+    timestamps: false
   });
   return User;
 };

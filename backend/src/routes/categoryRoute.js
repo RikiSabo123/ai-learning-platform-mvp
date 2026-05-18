@@ -3,9 +3,9 @@ const router=express.Router();
 const categoryController=require('../controllers/categoryController');
 
 //Get all categories
-router.get('/',categoryController.getAllCategories);
+router.get('/all',categoryController.getCategories);
 //Get subcategories by category id
-router.get('/subcategoriesByCategoryId/:categoryId',categoryController.getSubCategoriesByCategoryId);
+router.get('/subcategoriesByCategoryId/:id',categoryController.getSubCategoriesByCategoryId);
 //Get subcategory by id
 router.get('/subcategoriesById/:id',categoryController.getSubCategoryById);
 

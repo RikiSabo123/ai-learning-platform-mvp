@@ -9,17 +9,25 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
+    
     static associate(models) {
-      // define association here
-      this.hasMany(models.subCategory,{foreignKey:'categoryId'})
-      this.hasMany(models.prompt,{foreignKey:'categoryId'})
-    }
+    this.hasMany(models.SubCategory, { 
+      foreignKey: 'categoryId',
+      as: 'subCategories' 
+    });
+    
+    this.hasMany(models.Prompt, { 
+      foreignKey: 'categoryId', 
+      as: 'prompts' 
+    });
+  }
   }
   Category.init({
     name: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Category',
+    timestamps: false
   });
   return Category;
 };

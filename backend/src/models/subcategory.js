@@ -10,10 +10,18 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
-      this.belongsTo(models.category,{foreignKey:'categoryId'})
-      this.hasMany(models.prompt,{foreignKey:'subCategoryId'})
-    }
+  // חיבור לקטגוריה 
+  this.belongsTo(models.Category, {
+    foreignKey: 'categoryId',
+    as: 'category'
+  });
+
+  // אם הגדרת פה גם קשר לפרומפטים
+  this.hasMany(models.Prompt, {
+    foreignKey: 'subCategoryId',
+    as: 'prompts'
+  });
+}
   }
   SubCategory.init({
     name: DataTypes.STRING,
@@ -21,6 +29,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'SubCategory',
+    timestamps: false
   });
   return SubCategory;
 };

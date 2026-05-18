@@ -10,10 +10,23 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
-      this.belongsTo(models.user,{foreignKey:'userId'})
-      this.belongsTo(models.category,{foreignKey:'categoryId'})
-      this.belongsTo(models.subCategory,{foreignKey:'subCategoryId'})
+      // LINK TO USER
+      this.belongsTo(models.User, {
+        foreignKey: 'userId', 
+        as: 'user'
+      });
+
+      // LINK TO CATEGORY
+      this.belongsTo(models.Category, {
+        foreignKey: 'categoryId',
+        as: 'category'
+      });
+
+      // LINK TO SUB-CATEGORY
+      this.belongsTo(models.SubCategory, {
+        foreignKey: 'subCategoryId',
+        as: 'subCategory'
+      });
     }
   }
   Prompt.init({
@@ -25,6 +38,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Prompt',
+    timestamps: false
   });
   return Prompt;
 };
