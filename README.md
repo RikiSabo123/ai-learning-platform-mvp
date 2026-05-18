@@ -78,4 +78,3 @@ Required variables:
 
 ---
 
-If you want, I can also improve the frontend README and add a short admin setup section.
