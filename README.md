@@ -1,80 +1,154 @@
 # AI Learning Platform
 
-A full-stack learning platform built with a modern React frontend and a Node.js backend.
-
-## 🚀 Overview
-This project provides an AI-driven learning experience with:
-- React + Vite frontend
-- Express.js backend
-- PostgreSQL database using Sequelize ORM
-- OpenAI/AI streaming integration
-- User authentication and role-based access
-- Admin dashboard and user history tracking
-- Docker Compose setup for easy local development
-
-## 🌐 Key Features
-- Register and login users by phone number
-- Persist user session using JWT authentication
-- Create AI prompts and stream AI responses in real time
-- Save and display user learning history
-- Admin-only routes for managing users and prompts
-- Configurable admin credentials via environment variables
-
-## 🧱 Tech Stack
-- Frontend: React, Vite, Material UI, React Router, Axios
-- Backend: Node.js, Express, Sequelize, PostgreSQL
-- Auth: JWT, cookies, role-based access control
-- DevOps: Docker Compose
-
-## ▶️ Run Locally
-From the project root:
-
-```bash
-docker-compose up --build
-```
-
-This starts:
-- `frontend` on `http://localhost:5173`
-- `backend` on `http://localhost:3000`
-- PostgreSQL database on `localhost:5432`
-
-## 🔧 Environment Variables
-Copy the backend env example and update with real values:
-
-```bash
-cd backend
-cp .env.example .env
-```
-
-Required variables:
-- `PORT`
-- `DB_HOST`
-- `DB_PORT`
-- `DB_NAME`
-- `DB_USER`
-- `DB_PASSWORD`
-- `OPENAI_API_KEY`
-- `JWT_SECRET`
-- `JWT_EXPIRES_IN`
-- `NODE_ENV`
-- `ADMIN_PHONE`
-- `ADMIN_NAME`
-- `ADMIN_ROLE`
-
-## 🧪 Notes
-- The backend automatically seeds admin user data on startup.
-- The frontend communicates with the backend using Axios and includes credentials for auth.
-- User history is stored and retrieved from the database.
-
-## ✅ Good to Know
-- Login and admin access are handled by user role.
-- The project supports both cookies and bearer auth for protected routes.
-- Docker Compose makes the full stack easy to launch and test.
-
-## 📁 Project Structure
-- `backend/` - Express server, models, controllers, routes, services
-- `frontend/` - React app, pages, UI, API services
-- `docker-compose.yml` - orchestrates backend, frontend, and PostgreSQL
+A modern full-stack AI-powered learning platform built with React, Node.js, Express, PostgreSQL, and OpenAI.
 
 ---
 
+## Overview
+
+This application provides an AI-assisted learning experience where users can interact with an AI assistant, manage their learning history, and access personalized content.
+
+The project follows a full-stack architecture with authentication, REST APIs, database persistence, and Docker support.
+
+---
+
+## Features
+
+- AI-powered learning assistant
+- Real-time AI response streaming
+- JWT authentication
+- HTTP-only cookie authentication
+- Role-based authorization (Admin/User)
+- User learning history
+- Admin dashboard
+- RESTful API
+- Docker Compose support
+
+---
+
+## Tech Stack
+
+### Frontend
+- React
+- Vite
+- React Router
+- Material UI
+- Axios
+
+### Backend
+- Node.js
+- Express.js
+- Sequelize ORM
+
+### Database
+- PostgreSQL
+
+### Authentication
+- JWT
+- HTTP-only Cookies
+
+### AI
+- OpenAI API
+
+### DevOps
+- Docker
+- Docker Compose
+
+---
+
+## Architecture
+
+```
+React
+      │
+      ▼
+REST API (Express)
+      │
+      ▼
+Business Logic
+      │
+      ▼
+PostgreSQL
+```
+
+---
+
+## Project Structure
+
+```
+backend/
+frontend/
+docker-compose.yml
+README.md
+```
+
+---
+
+## Installation
+
+```bash
+git clone <repository-url>
+
+docker-compose up --build
+```
+
+---
+
+## Environment Variables
+
+Create a `.env` file inside the backend folder.
+
+Required variables:
+
+```
+PORT
+DB_HOST
+DB_PORT
+DB_NAME
+DB_USER
+DB_PASSWORD
+
+OPENAI_API_KEY
+
+JWT_SECRET
+JWT_EXPIRES_IN
+
+ADMIN_PHONE
+ADMIN_NAME
+ADMIN_ROLE
+```
+
+---
+
+## API Features
+
+Authentication
+
+- Register
+- Login
+- Logout
+
+AI
+
+- Stream AI responses
+- Save learning history
+
+Admin
+
+- Manage users
+- Manage prompts
+
+---
+
+## Future Improvements
+
+- Chat history search
+- Multiple AI providers
+- Unit testing
+- CI/CD
+
+---
+
+## License
+
+MIT
