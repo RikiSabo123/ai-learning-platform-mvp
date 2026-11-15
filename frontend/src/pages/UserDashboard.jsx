@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { learningService } from "../services/learningService";
-import axios from "axios";
 import ReactMarkdown from 'react-markdown';
 import {
     Container,
@@ -34,12 +33,9 @@ export const UserDashboard = () => {
     const [selectedSubCategoryName, setSelectedSubCategoryName] = useState('');
     const [currentPrompt, setCurrentPrompt] = useState('');
     const [AIResponse, setAIResponse] = useState('');
-    const [userName, setUserName] = useState('');
+    const [userName] = useState(() => localStorage.getItem('userName') || '');
 
     useEffect(() => {
-        const savedName = localStorage.getItem('userName');
-        if (savedName) setUserName(savedName);
-
         const fetchCategories = async () => {
             setLoading(true);
             setError('');

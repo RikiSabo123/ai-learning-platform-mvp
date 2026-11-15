@@ -1,5 +1,7 @@
 # AI Learning Platform
 
+[![CI](https://github.com/RikiSabo123/ai-learning-platform-mvp/actions/workflows/ci.yml/badge.svg)](https://github.com/RikiSabo123/ai-learning-platform-mvp/actions/workflows/ci.yml)
+
 A modern full-stack AI-powered learning platform built with React, Node.js, Express, PostgreSQL, and OpenAI.
 
 ---
@@ -53,6 +55,7 @@ The project follows a full-stack architecture with authentication, REST APIs, da
 ### DevOps
 - Docker
 - Docker Compose
+- GitHub Actions (CI)
 
 ---
 
@@ -78,9 +81,24 @@ PostgreSQL
 ```
 backend/
 frontend/
+.github/workflows/ci.yml
 docker-compose.yml
 README.md
 ```
+
+---
+
+## CI
+
+Every push to `main` and every pull request runs [`.github/workflows/ci.yml`](.github/workflows/ci.yml) on GitHub Actions:
+
+| Job | What it checks |
+| --- | --- |
+| **frontend** | `npm ci`, ESLint, and a production `vite build` |
+| **backend** | `npm ci` and a syntax check of every backend file |
+| **docker** | Builds all images with Docker Compose, starts the full stack (PostgreSQL, API, frontend), and smoke-tests it: the API answers, migrations and seeds ran (admin user and categories exist), and the frontend is served. Logs are printed if anything fails. |
+
+The `docker` job runs only after `frontend` and `backend` pass, and uses a CI-only `.env` with dummy values, so no real secrets are needed.
 
 ---
 
@@ -145,7 +163,6 @@ Admin
 - Chat history search
 - Multiple AI providers
 - Unit testing
-- CI/CD
 
 ---
 
